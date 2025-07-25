@@ -3,6 +3,8 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from contextlib import contextmanager
+from dotenv import load_dotenv
+load_dotenv()
 
 class DatabaseManager:
     """
@@ -15,7 +17,7 @@ class DatabaseManager:
         
         # A engine é o coração da conexão, é criada apenas uma vez.
         self.engine = create_engine(
-            f"mysql+pymysql://{credentials['user']}:{credentials['password']}"
+            f"postgresql://{credentials['user']}:{credentials['password']}"
             f"@{credentials['host']}:{credentials['port']}/{credentials['database']}"
         )
         
@@ -27,7 +29,7 @@ class DatabaseManager:
         return {
             "user": os.getenv("DB_USER", "default_user"),
             "password": os.getenv("DB_PASSWORD", "default_password"),
-            "host": os.getenv("DB_HOST", "localhost"),
+            "host": os.getenv("DB_HOST", "127.0.0.1"),
             "port": os.getenv("DB_PORT", "3306"), # Porta padrão do MySQL
             "database": os.getenv("DB_NAME", "mydatabase")
         }

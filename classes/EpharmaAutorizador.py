@@ -22,39 +22,36 @@ class EpharmaAutorizador(BrowserOptions):
 
 
 
-    @staticmethod
-    def get_url():
+    def get_url(self):
         """Retorna a URL do EpharmaAutorizador."""
-        return EpharmaAutorizador.url
+        return self.url
 
-    @staticmethod
-    def get_login():
-        """Retorna o login do EpharmaAutorizador."""
-        return EpharmaAutorizador.login
-
-    @staticmethod
-    def get_password():
-        """Retorna a senha do EpharmaAutorizador."""
-        return EpharmaAutorizador.password 
     
+    def get_login(self):
+        """Retorna o login do EpharmaAutorizador."""
+        return self.login
+
+    def get_password(self):
+        """Retorna a senha do EpharmaAutorizador."""
+        return self.password
 
 
 
-    @staticmethod
+
     def login(self):
 
         """Realiza o login no EpharmaAutorizador."""
         browser = self.browser
-        browser.get(EpharmaAutorizador.get_url())
+        browser.get(self.get_url())
         
         WebDriverWait(browser, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "#login"))
-        ).send_keys(EpharmaAutorizador.get_login())
+        ).send_keys(self.get_login())
 
         WebDriverWait(browser, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "#senha"))
-        ).send_keys(EpharmaAutorizador.get_password())
-        
+        ).send_keys(self.get_password())
+
         WebDriverWait(browser, 10).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".btn.btn-default.submit"))
         ).click()

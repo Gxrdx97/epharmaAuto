@@ -1,11 +1,9 @@
 
 from classes.QueryExecutor import QueryExecutor
-from classes.DatabaseManager import DatabaseManager
-
-db_connect = DatabaseManager()
 
 
-query_executor = QueryExecutor(db_connect)
+
+query_executor = QueryExecutor()
 
 def test_get_query():
     """Retorna a query para o banco de dados."""
@@ -23,4 +21,4 @@ def test_get_query():
             group by v.valor,vv.data_receita,v.cliente, c.nome,c.cpf,c.observacoes,m.crm ,m.uf_conselho , epp.cod_prod, epp.prd_ean, cn.cod_barras_nfe
 
             """
-    print(query_executor.execute_query(query))
+    print(query_executor.return_functional_objects(query))
